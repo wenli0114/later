@@ -1,0 +1,13 @@
+status: testing
+responsible: nobody
+modified: 2015-12-16T08:20:50
+reporter: ongspxm
+created: 2015-12-13T14:05:37
+
+Export data into json
+- with revision plugin
+- database presentation
+
+git message:
+add export plugin
+- output data as json format

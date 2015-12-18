@@ -69,7 +69,7 @@ should be calculated. Default is '1'."""
    
    for issue in schedule():
       if issue.ideadline:
-         print issue.ideadline.strftime("%Y/%m/%d"),
+         print issue.ideadline.strftime("%Y-%m-%d"),
       else:
          print "          ",
       print issue.shortString()

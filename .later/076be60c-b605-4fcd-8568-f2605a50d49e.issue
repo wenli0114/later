@@ -1,0 +1,11 @@
+status: closed
+responsible: ongspxm
+modified: 2015-12-15T13:34:11
+reporter: ongspxm
+created: 2015-12-04T15:20:53
+
+revision control
+- under new revision = closed plus no revision
+- prevision revision, current revision (listing)
+- confirmed = due in next revision
+- store revision in .revision

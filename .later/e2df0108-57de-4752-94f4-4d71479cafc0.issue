@@ -1,15 +1,16 @@
-status: confirmed
-responsible: zwinkau
-modified: 2010-08-13T06:15:46
+status: closed
 reporter: Andreas Zwinkau <beza1e1@web.de>
+responsible: ongspxm
+modified: 2015-12-05T11:53:36
 created: 2010-08-13T06:12:19
+revision: initial
 
 What to do on no-command-given?
 
 Possibilities:
 
- * Show an error message (current solution)
- * Show usage, just like help
+ * Show usage, just like help (current solution)
+ * Show an error message
  * Show an overview
  * Show issue list, just like list
  * Show a funny/motivating/provocative message, like fortune
