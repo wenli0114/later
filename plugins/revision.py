@@ -36,7 +36,7 @@ def all_issues():
 def pending_issues():
 	return [iss for iss in all_issues() if not iss.properties.get('revision') and iss.properties.get('status')!='reported']
 
-def revision_list():
+def revision_list(be=0):
 	"""
 	List all revisions
 	"""
@@ -44,10 +44,12 @@ def revision_list():
 	rev = rev_file()
 	if not rev: return
 
-	revs = [' '+l.strip() for l in open(rev).readlines() if l.strip()]
+	revs = [l.strip() for l in open(rev).readlines() if l.strip()]
+	if be: return revs
+	
 	if revs:
-		print 'Revision (latest on top):'
-		print '\n'.join(revs)
+		print 'Revision (latest on top):\n', 
+		print '\n '.join(revs)
 	else:
 		print 'No revisions available'
 
@@ -143,7 +145,7 @@ revision show <rev_name>	Show issues in <rev_name>
 	args = args[1:]
 	
 	if cmd=='list':
-		revision_list()
+		return revision_list(len(args))
 	elif cmd=='new':
 		if not len(args):
 			print 'Please insert valid revision name'

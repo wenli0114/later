@@ -368,6 +368,7 @@ delete <guid>				delete issue <guid>
 delete-closed				delete all closed issues
 list-subdirs				show issue list of subdirs
 revision					manage revisions
+export                      export data in json format
 
 """ % (sys.argv[0])
 
