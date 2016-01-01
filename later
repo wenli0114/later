@@ -348,26 +348,26 @@ def cmd_assign(args):
 _USAGE = """\
 A command-line issue tracker for a lazy developer.
 Usage is "%s <cmd> ...", where <cmd> is one of
-								
-init						create dir in current directory
-add "msg"					report new issue with title "msg"
-edit <guid>					edit issue with the given guid
-close <guid>				set status to closed
-confirm <guid>				set status to confirmed
-assign <guid> <developer>	set responsible to developer
-list						show all issues in short
-show <guid>					show issue <guid> completely
-help <cmd>					shows documentation for <cmd>
+
+init                        create dir in current directory
+add "msg"                   report new issue with title "msg"
+edit <guid>                 edit issue with the given guid
+close <guid>                set status to closed
+confirm <guid>              set status to confirmed
+assign <guid> <developer>   set responsible to developer
+list                        show all issues in short
+show <guid>                 show issue <guid> completely
+help <cmd>                  shows documentation for <cmd>
 
 PLUGINS
 =======
 
-schedule					calculates/show deadlines
-htmlreport					generate html report
-delete <guid>				delete issue <guid>
-delete-closed				delete all closed issues
-list-subdirs				show issue list of subdirs
-revision					manage revisions
+schedule                    calculates/show deadlines
+report                      generate html report
+delete <guid>               delete issue <guid>
+delete-closed               delete all closed issues
+list-subdirs                show issue list of subdirs
+revision                    manage revisions
 export                      export data in json format
 
 """ % (sys.argv[0])
