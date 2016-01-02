@@ -48,8 +48,7 @@ def revision_list(be=0):
 	if be: return revs
 	
 	if revs:
-		print 'Revision (latest on top):\n', 
-		print '\n '.join(revs)
+		print 'Revision (latest on top):\n '+'\n '.join(revs)
 	else:
 		print 'No revisions available'
 

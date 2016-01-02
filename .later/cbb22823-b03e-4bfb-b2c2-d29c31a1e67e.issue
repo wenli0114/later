@@ -1,8 +1,9 @@
 status: closed
-responsible: nobody
-modified: 2015-12-24T07:32:02
 reporter: ongspxm
+responsible: nobody
+modified: 2016-01-02T09:38:53
 created: 2015-12-13T14:05:37
+revision: ongspxm_update
 
 Export data into json
 - with revision plugin
