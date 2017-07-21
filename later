@@ -214,6 +214,8 @@ def cmd_init(args):
 @hooked
 def cmd_add(args):
 	"""Quickly add a new issue by specifying only a message."""
+	if not args:
+		error("need message argument")
 	issue = Issue()
 	issue.msg = args.pop(0)
 	_HOOKS.be_store_issue(issue)
