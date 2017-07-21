@@ -306,6 +306,14 @@ Examples:
 		args.remove('bugs')
 
 	matcher = gen_matcher(args)
+
+	# sort issues first by component, then by priority, then by type, then by date created
+	issues = sorted(issues, key = lambda iss: (
+					iss.properties.get("component"," "),
+					-int(iss.properties.get("priority",0)),
+					iss.properties.get("created","")
+					))
+
 	for issue in issues:
 		# if args specified search in properties,
 		# otherwise list all issues not closed.
