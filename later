@@ -130,11 +130,14 @@ def serialize_datetime(dt):
 class Issue:
 	def __init__(self, guid=None, properties=dict(), message="Something is rotten ..."):
 		self.properties = dict(
-				status="reported",
+				status="filed",
 				#priority=_CONFIG["default_priority"],
-				responsible="nobody",
+				#responsible="nobody",
 				created=serialize_datetime(datetime.utcnow()),
-				reporter=_CONFIG['username'])
+				#reporter=_CONFIG['username'],
+				component="none",
+				)
+		self.properties["type"] = "none"
 		for k,v in properties.items():
 			self.properties[k] = v
 		self.msg = message
@@ -148,7 +151,7 @@ class Issue:
 		status = self.properties.get("status", "?")
 		if (status == "closed"):
 			status = "[X]"
-		elif (status in ["reported", "confirmed"]):
+		elif (status in ["filed", "reported", "confirmed"]):
 			status = "[ ]"
 		elif (status in ["in progress"]):
 			status = "[-]"
