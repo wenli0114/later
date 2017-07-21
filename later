@@ -409,8 +409,8 @@ def cmd_help(args=[]):
 
 def main():
 	if len(sys.argv) <= 1:
-		print _USAGE
-		return
+		# if no argument, default to list
+		sys.argv.append("list")
 
 	if sys.argv[1] == "init":
 		cmd_init(sys.argv[2:])
