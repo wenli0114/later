@@ -314,11 +314,17 @@ Examples:
 					iss.properties.get("created","")
 					))
 
+	separator = " -------------------------------------------------------------------------------------------"
+	prev_issue = None
 	for issue in issues:
 		# if args specified search in properties,
 		# otherwise list all issues not closed.
 		if matcher(issue):
+			if (prev_issue):
+				if (prev_issue.properties.get("component","").strip() != issue.properties.get("component","").strip()):
+					print separator
 			print issue.shortString()
+			prev_issue = issue
 
 @hooked
 def cmd_edit(args):
