@@ -224,8 +224,8 @@ def cmd_add(args):
 def gen_matcher(args):
 	"""Generate an issue matcher from command line arguments"""
 
-        multivalue_keys = ["tags"]
-        key_synonyms = {"tags":["tag"], "component":["comp"]}
+	multivalue_keys = ["tags"]
+	key_synonyms = {"tags":["tag"], "component":["comp"]}
 
 	if not args:
 		def open_matcher(issue):
@@ -246,29 +246,29 @@ def gen_matcher(args):
 		pattern = args[0]
 		if "!=" in pattern:
 			key, value = pattern.split("!=")
-                        for syn in key_synonyms:
-                            if key in key_synonyms[syn]:
-                                key = syn
-                        if key in multivalue_keys:
-                            def except_matcher(issue):
-                                    val_list = [val.strip() for val in issue.properties.get(key, "").split(",") if val.strip() != ""]
-                                    return value not in val_list
-                        else:
-                            def except_matcher(issue):
-                                    return issue.properties.get(key, value) != value
+			for syn in key_synonyms:
+				if key in key_synonyms[syn]:
+					key = syn
+			if key in multivalue_keys:
+				def except_matcher(issue):
+					val_list = [val.strip() for val in issue.properties.get(key, "").split(",") if val.strip() != ""]
+					return value not in val_list
+			else:
+				def except_matcher(issue):
+					return issue.properties.get(key, value) != value
 			return except_matcher
 		elif "=" in pattern:
 			key, value = pattern.split("=")
-                        for syn in key_synonyms:
-                            if key in key_synonyms[syn]:
-                                key = syn
-                        if key in multivalue_keys:
-                            def matcher(issue):
-                                    val_list = [val.strip() for val in issue.properties.get(key, "").split(",") if val.strip() != ""]
-                                    return value in val_list
-                        else:
-                            def matcher(issue):
-                                    return issue.properties.get(key, None) == value
+			for syn in key_synonyms:
+				if key in key_synonyms[syn]:
+					key = syn
+			if key in multivalue_keys:
+				def matcher(issue):
+					val_list = [val.strip() for val in issue.properties.get(key, "").split(",") if val.strip() != ""]
+					return value in val_list
+			else:
+				def matcher(issue):
+					return issue.properties.get(key, None) == value
 			return matcher
 	error("Can not parse pattern: " + " ".join(args))
 
