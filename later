@@ -161,7 +161,7 @@ class Issue:
 		component = self.properties.get("component", "?")
 		issuetype = self.properties.get("type", "?")
 		priority = self.properties.get("priority", "?")
-		return " %s %s %s | %-50s %-15s %s"%(self.guid[:8], status, priority, string, component, issuetype)
+		return " %s %s %s | %-50.50s %-15.15s %s"%(self.guid[:8], status, priority, string, component, issuetype)
 	def longString(self):
 		"""Multi line representation"""
 		string = "%s\n" % (self.guid)
