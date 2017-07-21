@@ -285,6 +285,8 @@ def gen_matcher(args):
 				def matcher(issue):
 					return issue.properties.get(key, None) == value
 			return matcher
+		elif pattern == "all":
+			return lambda x: True
 	error("Can not parse pattern: " + " ".join(args))
 
 @hooked
@@ -307,9 +309,10 @@ Examples:
 
 	matcher = gen_matcher(args)
 
-	# sort issues first by component, then by priority, then by type, then by date created
+	# sort issues first by component, then by completion, then by priority, then by type, then by date created
 	issues = sorted(issues, key = lambda iss: (
 					iss.properties.get("component"," "),
+					iss.properties.get("status","") == "closed",
 					-int(iss.properties.get("priority",0)),
 					iss.properties.get("created","")
 					))
