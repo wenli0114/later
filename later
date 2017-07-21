@@ -146,7 +146,18 @@ class Issue:
 			i = None
 		string = self.msg[:i]
 		status = self.properties.get("status", "?")
-		return " %s  %-50s %s"%(self.guid[:8], string, status) 
+		if (status == "closed"):
+			status = "[X]"
+		elif (status in ["reported", "confirmed"]):
+			status = "[ ]"
+		elif (status in ["in progress"]):
+			status = "[-]"
+		else:
+			status = "[ ]"
+
+		component = self.properties.get("component", "?")
+		issuetype = self.properties.get("type", "?")
+		return " %s %s %-50s %-15s %s"%(self.guid[:8], status, string, component, issuetype)
 	def longString(self):
 		"""Multi line representation"""
 		string = "%s\n" % (self.guid)
@@ -287,7 +298,7 @@ Examples:
 
 	# Filtering for bugs
 	if args.count('bugs'):
-		issues = (iss for iss in issues if iss.msg[:3]=="bug")
+		issues = (iss for iss in issues if iss.properties.get("type", None)=="bug")
 		args.remove('bugs')
 
 	matcher = gen_matcher(args)
