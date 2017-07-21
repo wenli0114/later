@@ -321,7 +321,13 @@ If none specified a new issue is generated (like add does.)"""
 	editor = os.getenv("EDITOR")
 	if not editor:
 		error("no $EDITOR environment variable")
-	issue = _HOOKS.be_load_issue(guid)
+
+	if (guid): # editing existing issue
+		issue = _HOOKS.be_load_issue(guid)
+	else:
+		issue = Issue()
+		issue.msg = "New issue"
+	_HOOKS.be_store_issue(issue)
 	fh, filename = mkstemp(".issue")
 	store_lfile(filename, issue.msg, issue.properties)
 	cmd = "%s %s" % (editor, filename)
