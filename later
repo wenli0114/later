@@ -131,11 +131,11 @@ class Issue:
 	def __init__(self, guid=None, properties=dict(), message="Something is rotten ..."):
 		self.properties = dict(
 				status="filed",
-				priority=int(_CONFIG.get("default_priority",2)),
+				priority=_CONFIG.get("default_priority","2"),
 				#responsible="nobody",
 				created=serialize_datetime(datetime.utcnow()),
 				#reporter=_CONFIG['username'],
-				component="",
+				component=" ",
 				)
 		self.properties["type"] = ""
 		for k,v in properties.items():
