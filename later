@@ -313,7 +313,7 @@ Examples:
 	issues = sorted(issues, key = lambda iss: (
 					iss.properties.get("component"," "),
 					iss.properties.get("status","") == "closed",
-					-int(iss.properties.get("priority",0)),
+					int(iss.properties.get("priority",100000)),
 					iss.properties.get("created","")
 					))
 
