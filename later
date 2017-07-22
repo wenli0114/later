@@ -378,6 +378,8 @@ def set_status(guid, status):
 		return
 	issue = _HOOKS.be_load_issue(guid)
 	issue.properties["status"] = status
+	if (status == "closed"):
+		issue.properties["closed"] = serialize_datetime(datetime.utcnow())
 	_HOOKS.be_store_issue(issue)
 
 @hooked
