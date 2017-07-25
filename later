@@ -469,7 +469,7 @@ edit <guid>                 edit issue with the given guid
 close <guid>                set status to closed
 confirm <guid>              set status to confirmed
 assign <guid> <developer>   set responsible to developer
-list                        show all issues in short
+list [all]                  show open [all] issues in short
 show <guid>                 show issue <guid> completely
 help <cmd>                  shows documentation for <cmd>
 
