@@ -231,6 +231,21 @@ def cmd_add(args):
 	"""Quickly add a new issue by specifying only a message."""
 	if not args:
 		error("need message argument")
+
+	# check for -e flag
+	if args[0] == '-e':
+		if (len(args) == 1):
+			edit_issue(None, None)
+			return
+		else:
+			msg = args[1]
+			edit_issue(None, msg)
+			return
+	elif args[-1] == '-e':
+		msg = args[0]
+		edit_issue(None, msg)
+		return
+
 	issue = Issue()
 	issue.msg = args.pop(0)
 	_HOOKS.be_store_issue(issue)
@@ -331,23 +346,29 @@ Examples:
 
 @hooked
 def cmd_edit(args):
-	"""Edit a specific issue.
-If none specified a new issue is generated (like add does.)"""
 	try:
 		guid = _HOOKS.be_complete_guid(args[0])
 		if not guid:
 			return
 	except IndexError:
 		guid = None
+        edit_issue(guid, "New issue")
+
+def edit_issue(guid, default_msg):
+	"""Edit a specific issue.
+If none specified a new issue is generated (like add does.)"""
 	editor = os.getenv("EDITOR")
 	if not editor:
 		error("no $EDITOR environment variable")
+
+        if not default_msg:
+            default_msg = "New issue"
 
 	if (guid): # editing existing issue
 		issue = _HOOKS.be_load_issue(guid)
 	else:
 		issue = Issue()
-		issue.msg = "New issue"
+		issue.msg = default_msg
 	_HOOKS.be_store_issue(issue)
 	fh, filename = mkstemp(".issue")
 	store_lfile(filename, issue.msg, issue.properties)
@@ -358,6 +379,7 @@ If none specified a new issue is generated (like add does.)"""
 	_HOOKS.be_store_issue(issue) # updates modified properties
 	if not guid: # generated a new issue
 		print "Issue stored as", issue.guid
+
 
 @hooked
 def cmd_show(args):
