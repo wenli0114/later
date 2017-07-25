@@ -1,3 +1,4 @@
 username: ongspxm
 default_priority: 0
 alias priority: prior pri
+multivalue keys: observers

@@ -96,6 +96,12 @@ def load_config():
                 else:
                     KEY_ALIASES[base_key] = aliases
 
+        # parse multivalue keys
+        if "multivalue keys" in _CONFIG:
+            multi_keys = _CONFIG["multivalue keys"].split(" ")
+            multi_keys = [multi_key.strip() for multi_key in multi_keys if len(multi_key) > 0]
+            MULTIVALUE_KEYS.extend(multi_keys)
+
 def store_config(path):
 	"""Store config to file"""
 	fh = open(path, 'w')
