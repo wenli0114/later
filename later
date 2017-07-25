@@ -341,6 +341,11 @@ Examples:
 
 	matcher = gen_matcher(args)
 
+	matched_issues = [issue for issue in issues if matcher(issue)]
+	print_issues(matched_issues)
+
+@hooked
+def print_issues(issues):
 	# sort issues first by component, then by completion, then by priority, then by type, then by date created
 	issues = sorted(issues, key = lambda iss: (
 					iss.properties.get("component"," "),
@@ -352,14 +357,11 @@ Examples:
 	separator = " -------------------------------------------------------------------------------------------"
 	prev_issue = None
 	for issue in issues:
-		# if args specified search in properties,
-		# otherwise list all issues not closed.
-		if matcher(issue):
-			if (prev_issue):
-				if (prev_issue.properties.get("component","").strip() != issue.properties.get("component","").strip()):
-					print separator
-			print issue.shortString()
-			prev_issue = issue
+		if (prev_issue):
+			if (prev_issue.properties.get("component","").strip() != issue.properties.get("component","").strip()):
+				print separator
+		print issue.shortString()
+		prev_issue = issue
 
 @hooked
 def cmd_edit(args):
