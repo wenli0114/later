@@ -85,22 +85,22 @@ def load_config():
 	if not _CONFIG.get("username", None):
 		_CONFIG["username"] = _HOOKS.guess_username()
 
-        # parse alias config
-        for item in _CONFIG:
-            if item[0:6] == "alias ":
-                base_key = item[6:].strip()
-                aliases = _CONFIG[item].split(" ")
-                aliases = [alias.strip() for alias in aliases if len(alias) > 0]
-                if base_key in KEY_ALIASES:
-                    KEY_ALIASES[base_key].extend(aliases)
-                else:
-                    KEY_ALIASES[base_key] = aliases
+	# parse alias config
+	for item in _CONFIG:
+		if item[0:6] == "alias ":
+			base_key = item[6:].strip()
+			aliases = _CONFIG[item].split(" ")
+			aliases = [alias.strip() for alias in aliases if len(alias) > 0]
+			if base_key in KEY_ALIASES:
+				KEY_ALIASES[base_key].extend(aliases)
+			else:
+				KEY_ALIASES[base_key] = aliases
 
-        # parse multivalue keys
-        if "multivalue keys" in _CONFIG:
-            multi_keys = _CONFIG["multivalue keys"].split(" ")
-            multi_keys = [multi_key.strip() for multi_key in multi_keys if len(multi_key) > 0]
-            MULTIVALUE_KEYS.extend(multi_keys)
+	# parse multivalue keys
+	if "multivalue keys" in _CONFIG:
+		multi_keys = _CONFIG["multivalue keys"].split(" ")
+		multi_keys = [multi_key.strip() for multi_key in multi_keys if len(multi_key) > 0]
+		MULTIVALUE_KEYS.extend(multi_keys)
 
 def store_config(path):
 	"""Store config to file"""
@@ -369,7 +369,7 @@ def cmd_edit(args):
 			return
 	except IndexError:
 		guid = None
-        edit_issue(guid, "New issue")
+	edit_issue(guid, "New issue")
 
 def edit_issue(guid, default_msg):
 	"""Edit a specific issue.
@@ -378,8 +378,8 @@ If none specified a new issue is generated (like add does.)"""
 	if not editor:
 		error("no $EDITOR environment variable")
 
-        if not default_msg:
-            default_msg = "New issue"
+	if not default_msg:
+		default_msg = "New issue"
 
 	if (guid): # editing existing issue
 		issue = _HOOKS.be_load_issue(guid)
