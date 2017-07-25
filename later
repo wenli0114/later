@@ -16,6 +16,8 @@ _DATA_DIR = ".later"
 
 _CONFIG={
 	"default_piority": 2,
+	"default_component": "unknown",
+	"default_type": "unknown",
 	"username": "wenli",
 }
 
@@ -155,9 +157,7 @@ class Issue:
 				#responsible="nobody",
 				created=serialize_datetime(datetime.utcnow()),
 				#reporter=_CONFIG['username'],
-				component=" ",
 				)
-		self.properties["type"] = ""
 		for k,v in properties.items():
 			self.properties[k] = v
 		self.msg = message
@@ -268,6 +268,8 @@ def cmd_add(args):
 
 	issue = Issue()
 	issue.msg = args.pop(0)
+	issue.properties["component"] = _CONFIG["default_component"]
+	issue.properties["type"] = _CONFIG["default_type"]
 	_HOOKS.be_store_issue(issue)
 	print "issue stored as", issue.guid
 
@@ -388,6 +390,8 @@ If none specified a new issue is generated (like add does.)"""
 	else:
 		issue = Issue()
 		issue.msg = default_msg
+		issue.properties["component"] = _CONFIG["default_component"]
+		issue.properties["type"] = _CONFIG["default_type"]
 	_HOOKS.be_store_issue(issue)
 	fh, filename = mkstemp(".issue")
 	store_lfile(filename, issue.msg, issue.properties)
