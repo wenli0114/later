@@ -409,14 +409,18 @@ def cmd_close(args):
 	"""Set status of a specific issue to 'closed'"""
 	if not args:
 		error("need guid argument")
-	_HOOKS.set_status(args[0], "closed")
+	guid = _HOOKS.be_complete_guid(args[0])
+	_HOOKS.set_status(guid, "closed")
+	print "Closed issue", guid
 
 @hooked
 def cmd_confirm(args):
 	"""Set status of a specific issue to 'confirmed'"""
 	if not args:
 		error("need guid argument")
-	_HOOKS.set_status(args[0], "confirmed")
+	guid = _HOOKS.be_complete_guid(args[0])
+	_HOOKS.set_status(guid, "confirmed")
+	print "Confirmed issue", guid
 
 @hooked
 def cmd_assign(args):
@@ -428,6 +432,7 @@ def cmd_assign(args):
 	
 	issue.properties["responsible"] = " ".join(args[1:])
 	_HOOKS.be_store_issue(issue)
+	print "Assigned issue", issue.guid, "to", issue.properties["responsible"]
 
 _USAGE = """\
 A command-line issue tracker for a lazy developer.
