@@ -19,6 +19,9 @@ _CONFIG={
 	"username": "wenli",
 }
 
+MULTIVALUE_KEYS = ["tags"]
+KEY_ALIASES = {"tags":["tag"], "component":["comp"]}
+
 def error(msg):
 	print "Error:", msg
 	exit(2)
@@ -81,6 +84,17 @@ def load_config():
 	
 	if not _CONFIG.get("username", None):
 		_CONFIG["username"] = _HOOKS.guess_username()
+
+        # parse alias config
+        for item in _CONFIG:
+            if item[0:6] == "alias ":
+                base_key = item[6:].strip()
+                aliases = _CONFIG[item].split(" ")
+                aliases = [alias.strip() for alias in aliases if len(alias) > 0]
+                if base_key in KEY_ALIASES:
+                    KEY_ALIASES[base_key].extend(aliases)
+                else:
+                    KEY_ALIASES[base_key] = aliases
 
 def store_config(path):
 	"""Store config to file"""
@@ -254,9 +268,6 @@ def cmd_add(args):
 def gen_matcher(args):
 	"""Generate an issue matcher from command line arguments"""
 
-	multivalue_keys = ["tags"]
-	key_synonyms = {"tags":["tag"], "component":["comp"]}
-
 	if not args:
 		def open_matcher(issue):
 			"""Default: only list non closed issues"""
@@ -276,10 +287,10 @@ def gen_matcher(args):
 		pattern = args[0]
 		if "!=" in pattern:
 			key, value = pattern.split("!=")
-			for syn in key_synonyms:
-				if key in key_synonyms[syn]:
-					key = syn
-			if key in multivalue_keys:
+			for base_key in KEY_ALIASES:
+				if key in KEY_ALIASES[base_key]:
+					key = base_key
+			if key in MULTIVALUE_KEYS:
 				def except_matcher(issue):
 					val_list = [val.strip() for val in issue.properties.get(key, "").split(",") if val.strip() != ""]
 					return value not in val_list
@@ -289,10 +300,10 @@ def gen_matcher(args):
 			return except_matcher
 		elif "=" in pattern:
 			key, value = pattern.split("=")
-			for syn in key_synonyms:
-				if key in key_synonyms[syn]:
-					key = syn
-			if key in multivalue_keys:
+			for base_key in KEY_ALIASES:
+				if key in KEY_ALIASES[base_key]:
+					key = base_key
+			if key in MULTIVALUE_KEYS:
 				def matcher(issue):
 					val_list = [val.strip() for val in issue.properties.get(key, "").split(",") if val.strip() != ""]
 					return value in val_list
