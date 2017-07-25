@@ -13,12 +13,14 @@ def cmd_delete(args):
 	if not guid:
 		return
 	_HOOKS.be_delete_issue(guid)
+        print "Deleted issue", guid
 
 def cmd_delete_closed(args):
 	"""Delete all closed issues permanently."""
 	assert len(args) == 0
 	for guid in _HOOKS.be_all_guids():
 		cmd_delete([guid])
+                print "Deleted issue", guid
 
 def plugin_init(hooks):
 	global _HOOKS

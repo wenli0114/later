@@ -213,6 +213,8 @@ def be_complete_guid(halfguid):
 				return
 			else:
 				found = guid
+	if not found:
+		print "No issue has guid starting with",halfguid
 	return found
 
 @hooked
