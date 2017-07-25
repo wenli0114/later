@@ -1,0 +1,8 @@
+status: filed
+created: 2017-07-24T16:45:00
+component: wenli
+modified: 2017-07-24T16:45:00
+priority: 0
+type: feature
+
+Rename synonyms to aliases, and move to config
