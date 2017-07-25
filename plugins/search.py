@@ -7,7 +7,7 @@ import re
 _HOOKS=None
 
 def cmd_search(args):
-	"""Search all issues"""
+	"""Search all issues with regular expressions"""
 
 	issues = (_HOOKS.be_load_issue(guid) for guid in _HOOKS.be_all_guids())
 

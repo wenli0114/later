@@ -458,7 +458,7 @@ A command-line issue tracker for a lazy developer.
 Usage is "%s <cmd> ...", where <cmd> is one of
 
 init                        create dir in current directory
-add "msg"                   report new issue with title "msg"
+add "msg" [-e]              report new issue with title "msg" (-e for editor)
 edit <guid>                 edit issue with the given guid
 close <guid>                set status to closed
 confirm <guid>              set status to confirmed
@@ -477,6 +477,7 @@ delete-closed               delete all closed issues
 list-subdirs                show issue list of subdirs
 revision                    manage revisions
 export                      export data in json format
+search                      regular expression search of issues (incl. headers)
 
 """ % (sys.argv[0])
 
