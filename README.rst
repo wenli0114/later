@@ -3,10 +3,14 @@ Later
 
 A command-line issue tracker for a lazy developer
 
+This fork is modified to fit wenli's workflow. You may prefer the upstream versions:
+`qznc/later <https://github.com/qznc/later>`_
+, 
+`ongspxm/later <https://github.com/ongspxm/later>`_
+.
+
 Differences between wenli and upstream
 ------------------------------------------
-
-This fork is modified to fit wenli's workflow. You may prefer the upstream versions.
 
  * Remove "reporter" and "responsible" fields by default (for working alone)
  * Add "component" field, representing which part of the project the issue applies to.
@@ -25,7 +29,7 @@ Usage
 -----
 
 There is no website or release version, yet.
-Clone the github repository git://github.com/beza1e1/later.git
+Clone the github repository git://github.com/wenli0114/later.git
 and use the ``later`` executable.
 Start with ``later help``.
 
@@ -33,7 +37,7 @@ Default config available in ``config`` (found in same directory as
 the ``later`` executable.
 
 Philosophy
----------
+----------
 
 Reread the tag line above!
 It is the essence of the philosophy behind this tool.
