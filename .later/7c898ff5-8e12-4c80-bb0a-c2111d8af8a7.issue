@@ -1,8 +1,9 @@
-status: filed
+status: closed
 created: 2017-07-24T16:45:00
-component: wenli
-modified: 2017-07-24T16:45:00
+component: main
+modified: 2017-07-26T01:27:25
 priority: 0
+closed: 2017-07-26T01:27:25
 type: feature
 
 Rename synonyms to aliases, and move to config

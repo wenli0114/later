@@ -1,8 +1,9 @@
-status: filed
+status: closed
 created: 2017-07-24T16:44:45
-component: wenli
-modified: 2017-07-24T16:44:45
+component: main
+modified: 2017-07-26T01:27:21
 priority: 0
+closed: 2017-07-26T01:27:21
 type: feature
 
 Implement default component and default type

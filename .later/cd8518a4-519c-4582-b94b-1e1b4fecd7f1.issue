@@ -1,7 +1,9 @@
-status: filed
+status: closed
 created: 2017-07-24T16:48:58
-modified: 2017-07-24T16:49:30
+component: documentation
+modified: 2017-07-26T01:27:15
 priority: 0
+closed: 2017-07-26T01:27:15
 type: documentation
 
 Update readme to reflect wenli changes
